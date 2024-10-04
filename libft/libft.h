@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:59:24 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/09/25 22:05:24 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:39:23 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strnstr(const char *s1, const char *s2, size_t len);
 void	ft_putchar_fd(char c, int fd);
 int		ft_strcmp(char *s1, char *s2);
+double	ft_atod(const char *str);
+void	ft_error(void);
+int		ft_isalldigits(const char *str);
 
 #endif

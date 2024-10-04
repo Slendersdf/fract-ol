@@ -6,18 +6,17 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:08:57 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/02 16:55:40 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:52:38 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
 void	ft_error_arg(void)
 {
-	ft_putstr_fd("Error arguments.\nusage:  Julia fractals \
+	ft_putstr_fd("Wrong arguments.\nCorrect format:  Julia fractals \
 	\t\t fractol [\"julia\"] (optionnal : add [real] [imag])\n\tMandelbrot fractal \
-	\t fractol [\"mandelbrot\"]\n\tBurning Ship fractal \
-	\t fractol [\"burningship\"]\n\tMandelbar Celtic fractal \
+	\t fractol [\"mandelbrot\"]\n\tMandelbar Celtic fractal \
 	 fractol [\"mandelbar\"]\n", 2);
 	exit(1);
 }

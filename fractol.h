@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:57:25 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/02 16:15:27 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:03:16 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void		ft_error_arg(void);
 int			ft_error_julia(int argc, char **argv);
 int			is_julia(char **argv);
 int			is_mandelbrot(char **argv);
-int			is_burningship(char **argv);
 int			is_mandelbar(char **argv);
 
 // Utils
