@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:08:14 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/03 14:23:58 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/08 23:40:13 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int	pick_fractal(int argc, char **argv, t_fractals *fractal)
 	return (0);
 }
 
+// Function that transform the coordinates of the pixels from image
+// to true coordinates of fractal plan used by iterations functions
+// Then we apply the corresponding color to the pixel and
+// we display the entier image at the end
 int	draw_fractal(t_fractals *fractal)
 {
 	int	x;
@@ -58,6 +62,15 @@ int	draw_fractal(t_fractals *fractal)
 	return (0);
 }
 
+// Function that calculates a color for a given iterations number value (specific to each fractal)
+// if iteration value = max iteration then we are inside the set of the fractal (so a black color)
+// The three following lines calculates the values of red, blue and green
+// sin (soft variation of colors like a degrading)
+// 0.2 * fractal->iterations (speed of theses variations depending of the number of iterations)
+// rb|gpi|ypu are shifting value for (red, green and blue) that changes the tones of colors
+// 125 just to have a slight soft variation max and 126 to get valid values for RGB components
+// Last line is just a combination of the three colors components to get a 24 RGB bits standard
+// First strong bits of red, next green's one and lastly blue's one (RGB order)
 int	ft_color(t_fractals *fractal)
 {
 	int	rgb[3];
@@ -67,5 +80,5 @@ int	ft_color(t_fractals *fractal)
 	rgb[0] = sin(0.2 * fractal->iterations + fractal->color_rb) * 125 + 126;
 	rgb[1] = sin(0.2 * fractal->iterations + fractal->color_gpi) * 125 + 126;
 	rgb[2] = sin(0.2 * fractal->iterations + fractal->color_ypu) * 125 + 126;
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	return (rgb[0] << 8 | rgb[1] << 16 | rgb[2]);
 }

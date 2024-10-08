@@ -6,13 +6,14 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:57:08 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/03 21:35:48 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:16:12 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-// Function that puts a pixel of a specific color at a given position
+// Function that puts a pixel of a specific color
+// at a given position (x, y)
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
