@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:56:34 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/03 14:23:38 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:00:37 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	color_set(int keysym, t_fractals *fractal)
 	return (0);
 }
 
+// med * 1.2 part is for the bw zoom
+// x|y / W|H part is for the cursor pos
+// So function to zoom backward from cursor pos
 void	mouse_down(t_fractals *fractal, int x, int y)
 {
 	fractal->min_x = fractal->center_x - \
@@ -47,6 +50,9 @@ void	mouse_down(t_fractals *fractal, int x, int y)
 	fractal->med_y * (1 + 0.2) * (1 - (double)y / HEIGHT);
 }
 
+// med * 1.2 part is for the fw zoom
+// x|y / W|H part is for the cursor pos
+// So function to zoom backward from cursor pos
 void	mouse_up(t_fractals *fractal, int x, int y)
 {
 	fractal->min_x = fractal->center_x - \

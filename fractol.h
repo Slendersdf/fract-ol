@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:57:25 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/02 23:03:16 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:31:01 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@
 # define PAD_6 65432
 # define PAD_7 65429
 # define PAD_8 65431
-# define PAD_9 65434
+//# define PAD_9 65434
 # define PAD_0 65438
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define ZOOM_FACTOR 1.15
 
 typedef struct s_complex {
 	double	real;

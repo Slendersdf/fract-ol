@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:08:14 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/08 23:40:13 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:52:48 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ int	ft_color(t_fractals *fractal)
 	rgb[0] = sin(0.2 * fractal->iterations + fractal->color_rb) * 125 + 126;
 	rgb[1] = sin(0.2 * fractal->iterations + fractal->color_gpi) * 125 + 126;
 	rgb[2] = sin(0.2 * fractal->iterations + fractal->color_ypu) * 125 + 126;
-	return (rgb[0] << 8 | rgb[1] << 16 | rgb[2]);
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }

@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:05:31 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/03 14:23:31 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:30:44 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	handle_input(int keysym, t_fractals *fractal)
 		destroy_and_free(fractal);
 		exit(0);
 	}
-	else if (keysym == PAD_9 && fractal->max_iterations < 800)
+	else if (keysym == PAD_6 && fractal->max_iterations < 800)
 		fractal->max_iterations += 50;
-	else if (keysym == PAD_6 && fractal->max_iterations > 50)
+	else if (keysym == PAD_3 && fractal->max_iterations > 50)
 		fractal->max_iterations -= 50;
 	moves(keysym, fractal);
 	change_julia(keysym, fractal);

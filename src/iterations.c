@@ -6,12 +6,22 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:06:56 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/03 14:23:45 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:52:25 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
+// zn+1 = zn^2 + c (Julia)
+// Calculate the new real par
+// Initialize real and img part of dot with current coords
+// Restart iteration cpt for the new point
+// The loop iterates until a point diverges or max iters
+// Stock temporarly real part because it will be used but modified
+// Calculate the new real part with Julia formula
+// Calculate the new img part with Julia formula again
+// If the point (zr^2+zr^2) > 4 then it diverges so STOP!
+// Diverges means the point is no part of Julia set
 int	julia_iterations(t_fractals *fractal)
 {
 	t_complex	dot;
@@ -33,6 +43,7 @@ int	julia_iterations(t_fractals *fractal)
 	return (fractal->iterations);
 }
 
+// zn+1 = zn^2 + c (Mandelbrot)
 int	mandelbrot_iterations(t_fractals *fractal)
 {
 	t_complex	dot;
@@ -53,6 +64,7 @@ int	mandelbrot_iterations(t_fractals *fractal)
 	return (fractal->iterations);
 }
 
+// zn+1 = |zn^2| + c
 int	mandelbar_iterations(t_fractals *fractal)
 {
 	t_complex	dot;
