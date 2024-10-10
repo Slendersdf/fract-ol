@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:56:34 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/09 18:00:37 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:50:24 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ int	color_set(int keysym, t_fractals *fractal)
 	return (0);
 }
 
-// med * 1.2 part is for the bw zoom
+// med * 1.2 part is for the zoom
 // x|y / W|H part is for the cursor pos
-// So function to zoom backward from cursor pos
-void	mouse_down(t_fractals *fractal, int x, int y)
+// So function to zoom outside from cursor pos
+// by increasing the size of fractal plan
+void	mouse_out(t_fractals *fractal, int x, int y)
 {
 	fractal->min_x = fractal->center_x - \
 	fractal->med_x * (1 + 0.2) * ((double)x / WIDTH);
@@ -50,10 +51,12 @@ void	mouse_down(t_fractals *fractal, int x, int y)
 	fractal->med_y * (1 + 0.2) * (1 - (double)y / HEIGHT);
 }
 
-// med * 1.2 part is for the fw zoom
+// center_x|y are coords of the center where zoom will be done
+// med * 1.2 part is for the zoom
 // x|y / W|H part is for the cursor pos
-// So function to zoom backward from cursor pos
-void	mouse_up(t_fractals *fractal, int x, int y)
+// So function to zoom inside from cursor pos
+// by decreasing the size of fractal plan
+void	mouse_in(t_fractals *fractal, int x, int y)
 {
 	fractal->min_x = fractal->center_x - \
 	fractal->med_x / (1 + 0.2) * ((double)x / WIDTH);

@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:57:25 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/09 17:31:01 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:50:57 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int			ft_color(t_fractals *fractal);
 
 //	Events
 int			handle_input(int keysym, t_fractals *fractal);
-void		mouse_down(t_fractals *fractal, int x, int y);
-void		mouse_up(t_fractals *fractal, int x, int y);
+void		mouse_out(t_fractals *fractal, int x, int y);
+void		mouse_in(t_fractals *fractal, int x, int y);
 int			handle_mouse(int event, int x, int y, t_fractals *fractal);
 int			destroy_and_free(t_fractals *fractal);
 int			moves(int keysym, t_fractals *fractal);

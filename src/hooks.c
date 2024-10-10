@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:05:31 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/09 17:30:44 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/10 21:51:09 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int	handle_mouse(int event, int x, int y, t_fractals *fractal)
 	fractal->center_x = fractal->min_x + ((double)x / WIDTH) * fractal->med_x;
 	fractal->center_y = fractal->min_y + ((double)y / HEIGHT) * fractal->med_y;
 	if (event == MOUSE_DOWN)
-		mouse_down(fractal, x, y);
+		mouse_out(fractal, x, y);
 	else if (event == MOUSE_UP)
-		mouse_up(fractal, x, y);
+		mouse_in(fractal, x, y);
 	draw_fractal(fractal);
 	return (0);
 }

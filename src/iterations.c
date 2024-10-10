@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:06:56 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/09 15:52:25 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/10 22:20:33 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int	julia_iterations(t_fractals *fractal)
 }
 
 // zn+1 = zn^2 + c (Mandelbrot)
+// Difference with Julia :
+// Z (real and imag) start at 0 and not with pixel coord
+// C is the pixel coord
 int	mandelbrot_iterations(t_fractals *fractal)
 {
 	t_complex	dot;
