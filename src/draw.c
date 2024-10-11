@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:08:14 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/10 22:13:28 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/11 16:30:07 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	draw_fractal(t_fractals *fractal)
 // Function that calculates a color for a given iterations number value (specific to each fractal)
 // if iteration value = max iteration then we are inside the set of the fractal (so a black color)
 // The three following lines calculates the values of red, blue and green
-// sin (soft variation of colors like a degrading and periodic value)
-// 0.2 * fractal->iterations (speed of theses variations depending of the number of iterations)
+// sin(0.3 * iter + shift) creates a periodic oscilation
+// It changes colors values and makes it like a fluid degraded colors
 // rb|gpi|ypu are shifting value for (red, green and blue) that changes the tones of colors
 // 125 just to have a bigger variation of color and 126 to get valid values for RGB components
 // Last line is just a combination of the three colors components to get a 24 RGB bits standard
