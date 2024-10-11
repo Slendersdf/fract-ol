@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:57:25 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/10 21:50:57 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:27:30 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,37 @@
 # define FRACTOL_H
 
 # include "minilibx/mlx.h"
-# include <math.h>
 # include <stdio.h>
-# include <X11/keysym.h>
 # include <stdlib.h>
+# include <math.h>
+# include <X11/keysym.h>
 # include "libft/libft.h"
 # include <limits.h>
 
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_ESC 65307
-# define MOUSE_UP 4
-# define MOUSE_DOWN 5
-# define KEY_W 119
-# define KEY_S 115
-# define KEY_A 97
-# define KEY_D 100
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
+# define ESC 65307
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define MOUSE_IN 4
+# define MOUSE_OUT 5
 
-# define PAD_1 65436
-# define PAD_2 65433
-# define PAD_3 65435
-# define PAD_4 65430
-# define PAD_5 65437
-# define PAD_6 65432
-# define PAD_7 65429
-# define PAD_8 65431
-//# define PAD_9 65434
-# define PAD_0 65438
+# define NUM_1 65436
+# define NUM_2 65433
+# define NUM_3 65435
+# define NUM_4 65430
+# define NUM_5 65437
+# define NUM_6 65432
+# define NUM_7 65429
+# define NUM_8 65431
+# define NUM_0 65438
 
-# define WIDTH 1920
-# define HEIGHT 1080
-
-typedef struct s_complex {
-	double	real;
-	double	imag;
-}			t_complex;
+# define WIDTH 1280
+# define HEIGHT 720
 
 typedef struct s_img {
 	void	*img;
@@ -61,6 +55,11 @@ typedef struct s_img {
 	int		line_length;
 	int		endian;
 }			t_img;
+
+typedef struct s_complex {
+	double	real;
+	double	imag;
+}			t_complex;
 
 typedef struct s_fractals {
 	int					iterations;
@@ -83,43 +82,35 @@ typedef struct s_fractals {
 	int					(*fract)(struct s_fractals *fractal);
 }						t_fractals;
 
-// Img and init
-void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
+//check_args.c
+int			if_julia(char **argv);
+int			if_mandelbrot(char **argv);
+int			if_mandelbar(char **argv);
+void		error_arg(void);
+int			error_julia(int argc, char **argv);
+//draw.c
+int			choose_fractal(int argc, char **argv, t_fractals *fractal);
+int			draw_fractal(t_fractals *fractal);
+int			pretty_color(t_fractals *fractal);
+//hooks_main.c
+int			handle_input(int keysym, t_fractals *fractal);
+int			handle_mouse(int event, int x, int y, t_fractals *fractal);
+//hooks_utils.c
+void		mouse_out(t_fractals *fractal, int x, int y);
+void		mouse_in(t_fractals *fractal, int x, int y);
+int			moves(int keysym, t_fractals *fractal);
+int			change_julia(int keysym, t_fractals *fractal);
+//iterations.c
+int			julia_iters(t_fractals *fractal);
+int			mandelbrot_iters(t_fractals *fractal);
+int			mandelbar_iters(t_fractals *fractal);
+//main.c
 void		init_fract(int argc, char **argv, t_fractals *fractal);
 void		init_img(t_fractals *fractal);
 void		init_julia_val(int argc, char **argv, t_fractals *fractal);
-
-//	Fractals
-int			pick_fractal(int argc, char **argv, t_fractals *fractal);
-
-	// Calculate
-int			julia_iterations(t_fractals *fractal);
-int			mandelbrot_iterations(t_fractals *fractal);
-int			burning_ship_iterations(t_fractals *fractal);
-int			mandelbar_iterations(t_fractals *fractal);
-
-	// Draw
-int			draw_fractal(t_fractals *fractal);
-int			ft_color(t_fractals *fractal);
-
-//	Events
-int			handle_input(int keysym, t_fractals *fractal);
-void		mouse_out(t_fractals *fractal, int x, int y);
-void		mouse_in(t_fractals *fractal, int x, int y);
-int			handle_mouse(int event, int x, int y, t_fractals *fractal);
-int			destroy_and_free(t_fractals *fractal);
-int			moves(int keysym, t_fractals *fractal);
-int			change_julia(int keysym, t_fractals *fractal);
-
-//	Checks
-void		ft_error_arg(void);
-int			ft_error_julia(int argc, char **argv);
-int			is_julia(char **argv);
-int			is_mandelbrot(char **argv);
-int			is_mandelbar(char **argv);
-
-// Utils
-void		ft_fractol_man(void);
+//utils.c
 int			color_set(int keysym, t_fractals *fractal);
+int			destroy(t_fractals *fractal);
+void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 #endif

@@ -1,7 +1,7 @@
 NAME = fractol
 
-MANDATORY = src/check_args.c src/draw.c src/hooks.c \
-				src/iterations.c src/main.c src/utils.c \
+MANDATORY = src/check_args.c src/draw.c src/hooks_main.c \
+				src/iterations.c src/main.c src/utils.c src/hooks_utils.c \
 
 OBJS = $(MANDATORY:%.c=%.o)
 

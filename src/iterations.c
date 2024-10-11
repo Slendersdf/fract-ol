@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:06:56 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/10 22:20:33 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:09:32 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // Calculate the new img part with Julia formula again
 // If the point (zr^2+zr^2) > 4 then it diverges so STOP!
 // Diverges means the point is no part of Julia set
-int	julia_iterations(t_fractals *fractal)
+int	julia_iters(t_fractals *fractal)
 {
 	t_complex	dot;
 	double		temp;
@@ -47,7 +47,7 @@ int	julia_iterations(t_fractals *fractal)
 // Difference with Julia :
 // Z (real and imag) start at 0 and not with pixel coord
 // C is the pixel coord
-int	mandelbrot_iterations(t_fractals *fractal)
+int	mandelbrot_iters(t_fractals *fractal)
 {
 	t_complex	dot;
 	double		temp;
@@ -68,7 +68,7 @@ int	mandelbrot_iterations(t_fractals *fractal)
 }
 
 // zn+1 = |zn^2| + c
-int	mandelbar_iterations(t_fractals *fractal)
+int	mandelbar_iters(t_fractals *fractal)
 {
 	t_complex	dot;
 	double		temp;

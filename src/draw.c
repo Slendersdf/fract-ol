@@ -6,28 +6,28 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 23:08:14 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/11 16:30:07 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:32:20 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-int	pick_fractal(int argc, char **argv, t_fractals *fractal)
+int	choose_fractal(int argc, char **argv, t_fractals *fractal)
 {
-	if (is_julia(argv))
+	if (if_mandelbrot(argv))
 	{
-		fractal->fract = julia_iterations;
+		if (argc == 2)
+			fractal->fract = mandelbrot_iters;
+	}
+	if (if_julia(argv))
+	{
+		fractal->fract = julia_iters;
 		init_julia_val(argc, argv, fractal);
 	}
-	if (is_mandelbrot(argv))
+	if (if_mandelbar(argv))
 	{
 		if (argc == 2)
-			fractal->fract = mandelbrot_iterations;
-	}
-	if (is_mandelbar(argv))
-	{
-		if (argc == 2)
-			fractal->fract = mandelbar_iterations;
+			fractal->fract = mandelbar_iters;
 	}
 	return (0);
 }
@@ -52,7 +52,7 @@ int	draw_fractal(t_fractals *fractal)
 			fractal->y = fractal->min_y + (fractal->max_y - \
 			fractal->min_y) * y / (HEIGHT);
 			fractal->fract(fractal);
-			my_mlx_pixel_put(&fractal->img, x, y, ft_color(fractal));
+			my_mlx_pixel_put(&fractal->img, x, y, pretty_color(fractal));
 			x++;
 		}
 		y++;
@@ -62,16 +62,21 @@ int	draw_fractal(t_fractals *fractal)
 	return (0);
 }
 
-// Function that calculates a color for a given iterations number value (specific to each fractal)
-// if iteration value = max iteration then we are inside the set of the fractal (so a black color)
+// Function that calculates a color for a given iterations number value
+// (specific to each fractal)
+// If iteration value = max iteration then we are inside the set of the fractal
+// (so a black color)
 // The three following lines calculates the values of red, blue and green
 // sin(0.3 * iter + shift) creates a periodic oscilation
 // It changes colors values and makes it like a fluid degraded colors
-// rb|gpi|ypu are shifting value for (red, green and blue) that changes the tones of colors
-// 125 just to have a bigger variation of color and 126 to get valid values for RGB components
-// Last line is just a combination of the three colors components to get a 24 RGB bits standard
+// rb|gpi|ypu are shifting value for (red, green and blue)
+// that changes the tones of colors
+// 125 just to have a bigger variation of color
+// and 126 to get valid values for RGB components
+// Last line is just a combination of the three colors components
+// to get a 24 RGB bits standard
 // First strong bits of red, next green's one and lastly blue's one (RGB order)
-int	ft_color(t_fractals *fractal)
+int	pretty_color(t_fractals *fractal)
 {
 	int	rgb[3];
 

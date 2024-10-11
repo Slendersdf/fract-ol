@@ -6,7 +6,7 @@
 /*   By: fpaulas- <fpaulas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:56:34 by fpaulas-          #+#    #+#             */
-/*   Updated: 2024/10/10 21:50:24 by fpaulas-         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:23:14 by fpaulas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	color_set(int keysym, t_fractals *fractal)
 {
-	if (keysym == PAD_1)
+	if (keysym == NUM_1)
 		fractal->color_rb--;
-	else if (keysym == PAD_2)
+	else if (keysym == NUM_2)
 		fractal->color_rb++;
-	else if (keysym == PAD_4)
+	else if (keysym == NUM_4)
 		fractal->color_gpi--;
-	else if (keysym == PAD_5)
+	else if (keysym == NUM_5)
 		fractal->color_gpi++;
-	else if (keysym == PAD_7)
+	else if (keysym == NUM_7)
 		fractal->color_ypu--;
-	else if (keysym == PAD_8)
+	else if (keysym == NUM_8)
 		fractal->color_ypu++;
-	else if (keysym == PAD_0)
+	else if (keysym == NUM_0)
 	{
 		fractal->color_rb = 12;
 		fractal->color_gpi = 11;
@@ -35,60 +35,21 @@ int	color_set(int keysym, t_fractals *fractal)
 	return (0);
 }
 
-// med * 1.2 part is for the zoom
-// x|y / W|H part is for the cursor pos
-// So function to zoom outside from cursor pos
-// by increasing the size of fractal plan
-void	mouse_out(t_fractals *fractal, int x, int y)
+int	destroy(t_fractals *fractal)
 {
-	fractal->min_x = fractal->center_x - \
-	fractal->med_x * (1 + 0.2) * ((double)x / WIDTH);
-	fractal->max_x = fractal->center_x + \
-	fractal->med_x * (1 + 0.2) * (1 - (double)x / WIDTH);
-	fractal->min_y = fractal->center_y - \
-	fractal->med_y * (1 + 0.2) * ((double)y / HEIGHT);
-	fractal->max_y = fractal->center_y + \
-	fractal->med_y * (1 + 0.2) * (1 - (double)y / HEIGHT);
+	mlx_destroy_image(fractal->img.mlx_ptr, fractal->img.img);
+	mlx_destroy_window(fractal->img.mlx_ptr, fractal->img.mlx_win);
+	mlx_destroy_display(fractal->img.mlx_ptr);
+	free(fractal->img.mlx_ptr);
+	exit(0);
 }
 
-// center_x|y are coords of the center where zoom will be done
-// med * 1.2 part is for the zoom
-// x|y / W|H part is for the cursor pos
-// So function to zoom inside from cursor pos
-// by decreasing the size of fractal plan
-void	mouse_in(t_fractals *fractal, int x, int y)
+// Function that puts a pixel of a specific color
+// at a given position (x, y)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	fractal->min_x = fractal->center_x - \
-	fractal->med_x / (1 + 0.2) * ((double)x / WIDTH);
-	fractal->max_x = fractal->center_x + \
-	fractal->med_x / (1 + 0.2) * (1 - ((double)x / WIDTH));
-	fractal->min_y = fractal->center_y - \
-	fractal->med_y / (1 + 0.2) * ((double)y / HEIGHT);
-	fractal->max_y = fractal->center_y + \
-	fractal->med_y / (1 + 0.2) * (1 - ((double)y / HEIGHT));
-}
+	char	*dst;
 
-int	ft_error_julia(int argc, char **argv)
-{
-	double	value1;
-	double	value2;
-
-	if (argc != 2 && argc != 4)
-		return (0);
-	if (argc == 4)
-	{
-		if ((ft_strlen(argv[2]) > 11 || ft_strlen(argv[3]) > 11))
-			return (0);
-		if (!(ft_isalldigits(argv[2]) && ft_isalldigits(argv[3])))
-			return (0);
-		else
-		{
-			value1 = ft_atod(argv[2]);
-			value2 = ft_atod(argv[3]);
-			if (!(value1 >= INT_MIN && value1 <= INT_MAX) || \
-			!(value2 >= INT_MIN && value2 <= INT_MAX))
-				return (0);
-		}
-	}
-	return (1);
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
